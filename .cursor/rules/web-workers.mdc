@@ -1,0 +1,32 @@
+---
+description: Web Workers и экспорт данных
+globs: public/workers/**/*,components/workers/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Web Workers
+
+Тяжёлые вычисления — в workers, не в main thread.
+
+## Файлы
+
+- `public/workers/` — chart, stats, map, leaderboard, export workers (plain JS)
+- `components/workers/WorkersManager.tsx` — singleton `WorkersManager` class
+- `components/workers/ClientWorkersManager.tsx` — React-обёртка
+
+## Паттерн
+
+```typescript
+const manager = WorkersManager.getInstance();
+const result = await manager.runStatsWorker(payload);
+```
+
+## Новый worker
+
+1. Добавь `public/workers/my-worker.js`
+2. Метод в `WorkersManager` + тип payload/result
+3. Co-located тест `public/workers/my-worker.test.js`
+
+## Export
+
+Экспорт CSV/JSON/HTML/PDF — через `export-worker.js` и `ExportButton`.

@@ -1,0 +1,5 @@
+public/workers/
+public/sw.js
+next.config.ts
+tailwind.config.ts
+proxy.ts

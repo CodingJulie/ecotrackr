@@ -1,0 +1,36 @@
+---
+description: Тестирование Vitest + Testing Library
+globs: "**/*.{test.ts,test.tsx,test.js}"
+alwaysApply: false
+---
+
+# Testing
+
+Runner: Vitest 4, jsdom, globals. Setup: `vitest.setup.ts`.
+
+## Расположение
+
+Co-located: `Component.test.tsx` рядом с `Component.tsx`.
+Workers: `public/workers/*.test.js`.
+
+## Глобальные моки (vitest.setup.ts)
+
+Уже замоканы: `@/lib/supabase`, `next/navigation`, `react-i18next`, `framer-motion`.
+Не дублируй полный Supabase mock — расширяй локально при необходимости.
+
+```typescript
+import { supabase } from '@/lib/supabase';
+vi.mocked(supabase.auth.getUser).mockResolvedValue({ data: { user: mockUser }, error: null });
+```
+
+## i18n в тестах
+
+Mock возвращает ключ: `t: (key: string) => key`.
+
+## Тяжёлые зависимости
+
+Leaflet, Recharts — мокай в тестах компонента (см. `OpenStreetMap.test.tsx`, `EmissionsTrend.test.tsx`).
+
+## Запуск
+
+`npm run test` · `npm run test:ci` (coverage)

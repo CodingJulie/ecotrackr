@@ -1,0 +1,39 @@
+---
+description: Локализация en/ru через i18next
+globs: app/**/*.{tsx,ts},components/**/*.{tsx,ts},public/locales/**/*.json,lib/i18n.js
+alwaysApply: false
+---
+
+# i18n
+
+Client-side i18next, **без** locale-префиксов в URL.
+
+## Использование
+
+```tsx
+import { useTranslation } from 'react-i18next';
+
+const { t, i18n } = useTranslation('common');
+return <h1>{t('welcome_back')}</h1>;
+```
+
+## Добавление строк
+
+1. Ключ в **snake_case** — в оба файла:
+   - `public/locales/en/common.json`
+   - `public/locales/ru/common.json`
+2. Namespace всегда `common`
+
+## Язык
+
+- Хранится в `localStorage` (`i18nextLng`)
+- Переключатель: `components/ui/LanguageSwitcher.tsx`
+- Даты: `formatDate(date, locale)` из `@/lib/utils`
+
+## AI insights
+
+Передавай `lang: i18n.language` в `/api/ai-insights` для локализованных fallback-текстов.
+
+## Не использовать
+
+`next-i18next`, route-based i18n из `next.config.ts` (закомментирован).

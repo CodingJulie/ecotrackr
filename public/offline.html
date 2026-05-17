@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EcoTrackr - Offline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .offline-card {
+            background: white;
+            border-radius: 32px;
+            padding: 48px 32px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .icon {
+            font-size: 80px;
+            margin-bottom: 24px;
+        }
+        h1 {
+            font-size: 28px;
+            color: #059669;
+            margin-bottom: 12px;
+        }
+        p {
+            color: #6b7280;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+        button {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #059669;
+        }
+        .retry-btn {
+            background: #f3f4f6;
+            color: #374151;
+            margin-top: 12px;
+        }
+        .retry-btn:hover {
+            background: #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+<div class="offline-card">
+    <div class="icon">🌍</div>
+    <h1>No connection</h1>
+    <p>Check your internet connection and try again</p>
+    <button onclick="location.reload()">Refresh page</button>
+    <button class="retry-btn" onclick="goToDashboard()">Back to dashboard</button>
+</div>
+
+<script>
+    function goToDashboard() {
+        const params = new URLSearchParams(location.search);
+        const returnTo = params.get('returnTo') || '/dashboard';
+        window.location.assign(returnTo);
+    }
+
+    window.addEventListener('online', () => {
+        location.reload();
+    });
+</script>
+</body>
+</html>
