@@ -1,0 +1,40 @@
+---
+description: EcoTrackr — обзор проекта, стек и структура каталогов
+alwaysApply: true
+---
+
+# EcoTrackr — Core
+
+Open-source PWA для учёта углеродного следа (CO₂e). **Не Chrome extension.**
+
+## Стек
+
+- Next.js 15 App Router + React 19 + TypeScript (strict)
+- Supabase Auth + PostgreSQL (клиентский доступ через `@/lib/supabase`)
+- Tailwind CSS + shadcn/ui (radix-nova), Framer Motion, Recharts, Leaflet
+- i18next (en/ru), Google Gemini (`/api/ai-insights`), Vitest + Testing Library
+- Web Workers (`public/workers/`) + Service Worker (`public/sw.js`)
+
+## Структура
+
+```
+app/           — страницы, layout, providers, единственный API route
+components/    — ui/, calculator/, charts/, dashboard/, forest/, maps/, workers/
+hooks/         — useDashboardData и др.
+lib/           — supabase.ts, utils.ts, i18n.js
+public/locales — en/common.json, ru/common.json
+```
+
+## Импорты и алиасы
+
+- Всегда `@/` (корень проекта)
+- UI: `@/components/ui/Button` (PascalCase файлы)
+- Утилиты: `cn()` из `@/lib/utils`
+
+## Не добавлять без запроса
+
+Zustand, Redux, next-i18next, Stripe, Server Actions, `@supabase/auth-helpers-nextjs`.
+
+## Команды
+
+`npm run dev` · `npm run test` · `npm run lint` · `npm run type-check`

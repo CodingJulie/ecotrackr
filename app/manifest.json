@@ -1,0 +1,83 @@
+{
+  "name": "EcoTrackr",
+  "short_name": "EcoTrackr",
+  "description": "Трекер углеродного следа - отслеживайте свой экологический след",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#059669",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-desktop-light-en.png",
+      "sizes": "2444x9074",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "EcoTrackr on desktop (English, light theme)"
+    },
+    {
+      "src": "/screenshot-desktop-dark-en.png",
+      "sizes": "2444x9074",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "EcoTrackr on desktop (English, dark theme)"
+    },
+    {
+      "src": "/screenshot-desktop-light-ru.png",
+      "sizes": "2444x9074",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "EcoTrackr на десктопе (светлая тема)"
+    },
+    {
+      "src": "/screenshot-desktop-dark-ru.png",
+      "sizes": "2444x9074",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "EcoTrackr на десктопе (тёмная тема)"
+    },
+    {
+      "src": "/screenshot-mobile-light.png",
+      "sizes": "800x13014",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "EcoTrackr на мобильном (светлая тема)"
+    },
+    {
+      "src": "/screenshot-mobile-dark.png",
+      "sizes": "800x13014",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "EcoTrackr на мобильном (тёмная тема)"
+    }
+  ],
+  "categories": ["lifestyle", "productivity"],
+  "lang": "ru",
+  "dir": "ltr"
+}

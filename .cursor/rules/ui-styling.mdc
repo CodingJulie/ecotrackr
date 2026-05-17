@@ -1,0 +1,46 @@
+---
+description: UI, shadcn/ui и Tailwind в EcoTrackr
+globs: components/**/*.tsx,app/**/*.tsx
+alwaysApply: false
+---
+
+# UI & Styling
+
+## shadcn/ui
+
+- Примитивы в `components/ui/` — PascalCase (`Button.tsx`, `Card.tsx`)
+- Стиль: radix-nova (`components.json`)
+- Классы через `cn()` из `@/lib/utils`
+
+```tsx
+import { Button } from '@/components/ui/Button';
+import { cn } from '@/lib/utils';
+
+<div className={cn('rounded-lg p-4', isActive && 'bg-emerald-50')} />
+```
+
+## Бренд
+
+- Primary: emerald (`emerald-600`, `#059669` в manifest)
+- Neutrals: zinc palette
+- Dark mode: класс `dark` на `<html>`, Tailwind `dark:` variants
+
+## Иконки
+
+`lucide-react` — предпочитай named imports.
+
+## Состояния загрузки
+
+`MainLoader` для full-page; skeleton/pulse для dynamic import placeholders.
+
+## Формы
+
+Ручная валидация (regex, length). Zod/react-hook-form не используются — не вводи без запроса.
+
+## Accessibility
+
+Добавляй `aria-label` на icon-only кнопки. jsx-a11y включён в ESLint.
+
+## Анимации
+
+Framer Motion для интерактивных переходов; не блокируй SSR там, где компонент уже `ssr: false`.

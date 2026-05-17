@@ -1,0 +1,45 @@
+---
+description: Паттерны Next.js App Router в EcoTrackr (client-first, PWA)
+globs: app/**/*.{ts,tsx},components/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Next.js App Router
+
+Проект **client-first**: большинство страниц и компонентов с `'use client'`.
+
+## Client Components
+
+Добавляй `'use client'` когда нужны хуки, обработчики событий или browser API.
+Root `app/layout.tsx` — Server Component; провайдеры в `app/providers.tsx`.
+
+## Тяжёлые виджеты — dynamic import
+
+Карты, графики, калькулятор, AI — через `next/dynamic` с `ssr: false`:
+
+```tsx
+const CO2Calculator = dynamic(() => import('@/components/calculator/CO2Calculator'), {
+  ssr: false,
+  loading: () => <MainLoader />,
+});
+```
+
+## Данные
+
+- CRUD через `@/lib/supabase` в клиентских компонентах и хуках
+- Агрегация дашборда — `hooks/useDashboardData`
+- Мутации **не** через Server Actions (их нет в проекте)
+- Единственный API route: `app/api/ai-insights/route.ts` (Gemini, server-only key)
+
+## Auth в middleware
+
+`middleware.ts` уже защищает `/dashboard` и `/settings` через `getUser()`.
+Не дублируй редиректы без необходимости.
+
+## Next.js 15
+
+Если page/layout принимает `params` или `searchParams` — это **Promise**, нужен `await`.
+
+## PWA
+
+Service worker: `public/sw.js`. Регистрация — `components/workers/ServiceWorkerRegister.tsx`.
