@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'EcoTrackr — Трекинг углеродного следа',
     description: 'Снижай свой углеродный след с умом. Красивый калькулятор CO₂, AI-рекомендации и геймификация.',
     keywords: ['углеродный след', 'CO2', 'экология', 'климат', 'устойчивость', 'carbon footprint'],
-    authors: [{ name: 'Твоё Имя' }],
+    authors: [{ name: 'Julia T' }],
     openGraph: {
         title: 'EcoTrackr — Следи и снижай свой углеродный след',
         description: 'Приложение для осознанного потребления и борьбы с изменением климата.',
@@ -28,5 +28,8 @@ export const metadata: Metadata = {
     icons: {
         icon: '/favicon.ico',
         apple: '/apple-touch-icon.png',
+    },
+    other: {
+        'preconnect': 'https://fgvghjbdifuipretksy.supabase.co',
     },
 };

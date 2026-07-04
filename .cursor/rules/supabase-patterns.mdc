@@ -1,0 +1,51 @@
+---
+description: Supabase auth и работа с данными в EcoTrackr
+globs: lib/**/*.ts,hooks/**/*.ts,middleware.ts,app/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Supabase
+
+## Клиент
+
+Единственный экспорт — browser client в `@/lib/supabase`:
+
+```typescript
+import { supabase } from '@/lib/supabase';
+```
+
+Env: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
+
+## Auth
+
+- На клиенте предпочитай `getUser()` над `getSession()` для проверки авторизации
+- Middleware и server-side — только `getUser()` (см. `middleware.ts`)
+- Методы: `signInWithPassword`, `signUp`, `signOut`, `resetPasswordForEmail`, `updateUser`
+
+## Таблицы
+
+| Таблица | Назначение |
+|---------|------------|
+| `footprint_entries` | Записи CO₂e (`user_id`, `co2e`, `date`, `category`, `activity`, `value`, `is_auto_generated`) |
+| `profiles` | Профиль (`name`, `avatar_url`) |
+| `user_trees` | Геймификация (`tree_level`, `total_co2_saved`) |
+| `community_forest` | Общий лес (`total_trees`) |
+| `user_map_points` | Гео-точки на карте |
+
+## Паттерны запросов
+
+```typescript
+const { data, error } = await supabase.from('footprint_entries').select('*').eq('user_id', userId);
+if (error) throw error;
+```
+
+- Опциональные записи: `maybeSingle()`, код `PGRST116` — «не найдено», не ошибка
+- Ошибки: `console.error` + inline UI или переведённое сообщение
+
+## Коэффициенты выбросов
+
+Единый источник — `getEmissionFactor()` в `lib/utils.ts`. Не дублируй в компонентах.
+
+## AI
+
+`GEMINI_API_KEY` — только на сервере в API route, никогда в `NEXT_PUBLIC_*`.
